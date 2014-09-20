@@ -24,3 +24,6 @@
 	+ Added Local File Support
 	+ Added Greplib.Download
 	+ Added Readme
+	
+[1.0] [REL]->
+	+ Added Greplib.Functions

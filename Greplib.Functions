@@ -1,0 +1,200 @@
+<?php
+	/*
+	 * Developer   : H4x0
+	 * Script Name : GrepLib
+	 * Script Vers : 1.0 [REL]
+	 * Licence     : Public Domain
+	 * Changelog   : Changelog.txt
+	 * Source      : http://crypt.noip.me
+	 * 
+	 * If you use this software in your project I would appreciate a 
+	 * link back to my blog (the "Source" url) in the source somewhere, 
+	 * it helps encourage me to develop more stuff.
+	 *
+	 * If you like this script, let me know on my blog! I am always open 
+	 * to reviews, criticism (good or bad), and suggestions.
+	 *
+	 * This script contains various database functions that can be 
+	 * called from other scripts.
+	 */
+	include("Greplib.Settings");
+	
+	/*
+	 * Returns a database connection or null on error
+	 * this function is primarily to save some repetitive 
+	 * typing because all the functions here query the 
+	 * database.
+	 */
+	function Database_Connection() {
+		$DB_CON = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+
+		if ($DB_CON->connect_errno) {
+			return null;
+		}
+		
+		return $DB_CON;
+	}
+	
+	/*
+	 * Returns a players text name from numeric ID
+	 * 
+	 * INPUT:   PLAYER ID       [STRING]
+	 * RETURNS: PLAYER NAME     [STRING]
+	 */
+	function Get_Player_Name_From_ID($ID) {
+		$DB = Database_Connection();
+		if ($DB == null) { die("Database connection error."); }
+		$RE = $DB->query("SELECT name FROM Players WHERE id='" . $ID . "'");
+		if (!$RE) { die("Query failed."); }
+		$RO = mysqli_fetch_assoc($RE);
+		$RESULT = $RO["name"];
+		$RE->free();
+		$DB->close();
+		return $RESULT;
+	}
+	
+	/*
+	 * Returns a players numeric ID from text name
+	 * 
+	 * INPUT:   PLAYER NAME     [STRING]
+	 * RETURNS: PLAYER ID       [STRING]
+	 */
+	function Get_Player_ID_From_Name($Name) {
+		$DB = Database_Connection();
+		if ($DB == null) { die("Database connection error."); }
+		$RE = $DB->query("SELECT id FROM Players WHERE name='" . $Name . "'");
+		if (!$RE) { die("Query failed."); }
+		$RO = mysqli_fetch_assoc($RE);
+		$RESULT = $RO["id"];
+		$RE->free();
+		$DB->close();
+		return $RESULT;
+	}
+	
+	/*
+	 * Returns a alliance text name from numeric ID
+	 * 
+	 * INPUT:   ALLIANCE ID     [STRING]
+	 * RETURNS: ALLIANCE NAME   [STRING]
+	 */
+	function Get_Alliance_Name_From_ID($ID) {
+		$DB = Database_Connection();
+		if ($DB == null) { die("Database connection error."); }
+		$RE = $DB->query("SELECT name FROM Alliances WHERE id='" . $ID . "'");
+		if (!$RE) { die("Query failed."); }
+		$RO = mysqli_fetch_assoc($RE);
+		$RESULT = $RO["name"];
+		$RE->free();
+		$DB->close();
+		return $RESULT;
+	}
+	
+	/*
+	 * Returns a alliance numeric ID from text name
+	 * 
+	 * INPUT:   ALLIANCE NAME   [STRING]
+	 * RETURNS: ALLIANCE ID     [STRING]
+	 */
+	function Get_Alliance_ID_From_Name($Name) {
+		$DB = Database_Connection();
+		if ($DB == null) { die("Database connection error."); }
+		$RE = $DB->query("SELECT id FROM Alliances WHERE name='" . $Name . "'");
+		if (!$RE) { die("Query failed."); }
+		$RO = mysqli_fetch_assoc($RE);
+		$RESULT = $RO["id"];
+		$RE->free();
+		$DB->close();
+		return $RESULT;
+	}
+	
+	/*
+	 * Returns a town text name from numeric ID
+	 * 
+	 * INPUT:   TOWN ID         [STRING]
+	 * RETURNS: TOWN NAME       [STRING]
+	 */
+	function Get_Town_Name_From_ID($ID) {
+		$DB = Database_Connection();
+		if ($DB == null) { die("Database connection error."); }
+		$RE = $DB->query("SELECT name FROM Towns WHERE id='" . $ID . "'");
+		if (!$RE) { die("Query failed."); }
+		$RO = mysqli_fetch_assoc($RE);
+		$RESULT = $RO["name"];
+		$RE->free();
+		$DB->close();
+		return $RESULT;
+	}
+	
+	/*
+	 * Returns a towns numeric ID from text name
+	 * 
+	 * INPUT:   TOWN NAME       [STRING]
+	 * RETURNS: TOWN ID         [STRING]
+	 */
+	function Get_Town_ID_From_Name($Name) {
+		$DB = Database_Connection();
+		if ($DB == null) { die("Database connection error."); }
+		$RE = $DB->query("SELECT id FROM Towns WHERE name='" . $Name . "'");
+		if (!$RE) { die("Query failed."); }
+		$RO = mysqli_fetch_assoc($RE);
+		$RESULT = $RO["id"];
+		$RE->free();
+		$DB->close();
+		return $RESULT;
+	}
+	
+	/*
+	 * Returns a list of players towns
+	 * 
+	 * INPUT:   PLAYER ID       [STRING]
+	 * RETURNS: PLAYER TOWNS    [ARRAY]
+	 *
+	 * ARRAY STRUCTURE:
+	 *
+	 *     Array
+     *     (
+     *         [0] => Array
+     *         (
+     *             [0] => Town_ID
+     *             [1] => Player_ID
+     *             [2] => Town_Name
+     *             [3] => X
+     *             [4] => Y
+     *             [5] => Number_On_Island
+     *             [6] => Points
+     *          )
+     *      )
+	 */
+	function Get_Player_Towns($ID) {
+		$DB = Database_Connection();
+		if ($DB == null) { die("Database connection error."); }
+		$RE = $DB->query("SELECT * FROM Towns WHERE player_id='" . $ID . "'");
+		if (!$RE) { die("Query failed."); }
+		
+		while($RO = $RE->fetch_row()) {
+			$AR[] = $RO;
+		}
+		
+		$RE->free();
+		$DB->close();
+		return $AR;
+	}
+	
+	/*
+	 * Returns a towns ocean number
+	 * 
+	 * INPUT:   TOWN ID         [STRING]
+	 * RETURNS: OCEAN NUMBER    [STRING]
+	 */
+	function Get_Town_Ocean_Number($ID) {
+		$DB = Database_Connection();
+		if ($DB == null) { die("Database connection error."); }
+		$RE = $DB->query("SELECT island_x, island_y FROM Towns WHERE id='" . $ID . "'");
+		if (!$RE) { die("Query failed."); }
+		$RO = mysqli_fetch_assoc($RE);
+		$RESULT = floor($RO["island_x"] / 100) * 10 + floor($RO["island_y"] / 100);
+		$RE->free();
+		$DB->close();
+		return $RESULT;
+	}
+?>
