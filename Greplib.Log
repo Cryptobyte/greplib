@@ -1,11 +1,15 @@
-[============================================]
-[ Grepolib       Thu Sep 18 9:52:10 UTC 2014 ]
-[============================================]
-[01.690000] Processed   1300 Players   ..Done]
-[00.820000] Processed    157 Alliances ..Done]
-[14.370000] Processed  22494 Towns     ..Done]
-[69.580000] Processed 117728 Islands   ..Done]
-[14.090000] Processed  20840 Conquers  ..Done]
-[============================================]
-[ Result: 162,519 records in 100.86 seconds. ]
-[============================================]
+Downloading all files...
+Downloading PlayersDownloading Players           ...Done! [00.77]
+Downloading AlliancesDownloading Alliances         ...Done! [00.40]
+Downloading TownsDownloading Towns             ...Done! [01.74]
+Downloading IslandsDownloading Islands           ...Done! [02.67]
+Downloading ConquersDownloading Conquers          ...Done! [01.67]
+
+Processing  all files...
+Processing  PlayersProcessing  Players           ...Done! [00.99]
+Processing  AlliancesProcessing  Alliances         ...Done! [00.42]
+Processing  TownsProcessing  Towns             ...Done! [12.24]
+Processing  IslandsProcessing  Islands           ...Done! [66.94]
+Processing  ConquersProcessing  Conquers          ...Done! [13.71]
+
+Timestamp   September 20, 2014, 4:02 am

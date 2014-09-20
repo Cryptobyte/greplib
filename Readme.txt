@@ -50,7 +50,7 @@ How to use:
 	
 	4) Test Greplib
 		- php Greplib
-		- php Greplib update all
+		- php Greplib --test database
 		
 	5) If everything works edit Greplib.Settings
 		- Set DEBUG_MODE to FALSE
