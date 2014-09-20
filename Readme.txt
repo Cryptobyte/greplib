@@ -49,12 +49,12 @@ How to use:
 	3) Upload all files to your server
 	
 	4) Test Greplib
-		- php Greplib.Download
 		- php Greplib
+		- php Greplib update all
 		
 	5) If everything works edit Greplib.Settings
 		- Set DEBUG_MODE to FALSE
 	   
 	6) OPTIONAL: Add to CRON
 		- crontab -e
-		- php Greplib > Greplib.Log
+		- php Greplib update all > Greplib.Log 2>&1
