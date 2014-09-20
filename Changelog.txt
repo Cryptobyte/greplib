@@ -1,0 +1,26 @@
+[0.1] [BETA]->
+	= First Release.
+
+[0.2] [BETA]->
+	+ Added Database Stuff
+
+[0.3] [BETA]->
+	+ Added Query Timing
+	+ Added WORLD_IDENTIFIER Setting
+	= Merged Functions
+	= Several Code Cleanups
+
+[0.4] [BETA]->
+	+ Added SCRIPT_VERBOSE Setting
+	+ Added SCRIPT_AUTO_TRUNCATE Setting
+	+ Added ClearDatabase() function
+	& Globals Now Defined In Greplib.Settings
+	& Fixed Islands Function
+	= Timing Now More Accurate
+	= Changed File Naming
+	= Sexier Output
+	
+[0.5] [BETA]->
+	+ Added Local File Support
+	+ Added Greplib.Download
+	+ Added Readme

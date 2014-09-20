@@ -1,0 +1,66 @@
+<?php
+	/*
+	 * Change this to pull data for a different world
+	 * or server.
+	 */
+	define("WORLD_IDENTIFIER", "en45");
+	
+	/*
+	 * If this is set to true nothing will be written 
+	 * to the database.
+	 */
+	define("DEBUG_MODE", FALSE);
+	
+	/*
+	 * Turns on verbose output for better output when 
+	 * run from terminal. This prints live counters to 
+	 * the terminal window, if this is on when used as 
+	 * to pipe to file like this,
+	 *        
+	 *         php Greplib.php > Greplib.log
+	 *
+	 * The script will pipe each update to the file 
+	 * causing a huge output file.
+	 */
+	define("SCRIPT_VERBOSE", FALSE);
+	
+	/*
+	 * Automatically truncate database tables before 
+	 * adding new items to them.
+	 */
+	define("SCRIPT_AUTO_TRUNCATE", TRUE);
+	
+	/*
+	 * If you are downloading the data files from Grepolis 
+	 * servers these settings will make Greplib use the local 
+	 * files instead of reading remotely.
+	 *
+	 * If you turn this on make sure you set paths for the data 
+	 * files below to the location of your downloaded files relative 
+	 * to the Grepolib script files.
+	 */
+	define("USE_LOCAL_PLAYERS",   TRUE);
+	define("USE_LOCAL_ALLIANCES", TRUE);
+	define("USE_LOCAL_TOWNS",     TRUE);
+	define("USE_LOCAL_ISLANDS",   TRUE);
+	define("USE_LOCAL_CONQUERS",  TRUE);
+	
+	/*
+	 * This setting tells Grepolib where to look for local 
+	 * data files if the USE_LOCAL_FILES setting above is 
+	 * set to TRUE
+	 */
+	define("LOCAL_PLAYERS",   "Data/Players.txt");
+	define("LOCAL_ALLIANCES", "Data/Alliances.txt");
+	define("LOCAL_TOWNS",     "Data/Towns.txt");
+	define("LOCAL_ISLANDS",   "Data/Islands.txt");
+	define("LOCAL_CONQUERS",  "Data/Conquers.txt");
+
+	/*
+		Database connection constants
+	*/
+	define("DB_HOST", "");
+	define("DB_USER", "");
+	define("DB_PASS", "");
+	define("DB_NAME", "");
+?>

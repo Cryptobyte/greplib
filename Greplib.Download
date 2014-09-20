@@ -1,0 +1,92 @@
+<?php
+    /*
+	 * Developer   : H4x0
+	 * Script Name : GrepLib
+	 * Script Vers : 0.5 [BETA]
+	 * Licence     : Public Domain
+	 * Changelog   : Changelog.txt
+	 * Source      : http://crypt.noip.me
+	 * 
+	 * If you use this software in your project I would appreciate a 
+	 * link back to my blog (the "Source" url) in the source somewhere, 
+	 * it helps encourage me to develop more stuff.
+	 *
+	 * If you like this script, let me know on my blog! I am always open 
+	 * to reviews, criticism (good or bad), and suggestions.
+	 *
+	 * This script is a helper script for Grepolib it is designed to 
+	 * download the Grepolis data files from the server to local 
+	 * files as defined in Greplib.Settings this uses the global variables 
+	 * 
+	 * LOCAL_PLAYERS
+	 * LOCAL_ALLIANCES
+	 * LOCAL_TOWNS
+	 * LOCAL_ISLANDS
+	 * LOCAL_CONQUERS
+	 *
+	 * This is designed to be run via command line or Cron job.
+	 */
+	include("Greplib.Settings");
+	
+	/*
+	 * Generates a url to the data file using 
+	 * supplied variables from the calling 
+	 * function and the global settings file.
+	 */
+	function Generate($DATA_FILE) {
+		return "http://" . WORLD_IDENTIFIER . ".grepolis.com/data/" . $DATA_FILE;
+	}
+	
+	/*
+	 * Runs all the download functions in the 
+	 * file to download all the data files from 
+	 * Grepolis servers.
+	 */
+	function Download_All() {
+		Download_Players();
+		Download_Alliances();
+		Download_Towns();
+		Download_Islands();
+		Download_Conquers();
+	}
+	
+	/*
+	 * Downloads the players.txt data file from Grepolis
+	 */
+	function Download_Players() {
+		file_put_contents(LOCAL_PLAYERS, fopen(Generate("players.txt"), 'r'));
+	}
+	
+	/*
+	 * Downloads the alliances.txt data file from Grepolis
+	 */
+	function Download_Alliances() {
+		file_put_contents(LOCAL_ALLIANCES, fopen(Generate("alliances.txt"), 'r'));
+	}
+	
+	/*
+	 * Downloads the towns.txt data file from Grepolis
+	 */
+	function Download_Towns() {
+		file_put_contents(LOCAL_TOWNS, fopen(Generate("towns.txt"), 'r'));
+	}
+	
+	/*
+	 * Downloads the islands.txt data file from Grepolis
+	 */
+	function Download_Islands() {
+		file_put_contents(LOCAL_ISLANDS, fopen(Generate("islands.txt"), 'r'));
+	}
+	
+	/*
+	 * Downloads the conquers.txt data file from Grepolis
+	 */
+	function Download_Conquers() {
+		file_put_contents(LOCAL_CONQUERS, fopen(Generate("conquers.txt"), 'r'));
+	}
+	
+	/*
+	 * Automatically run Download_All when script is executed.
+	 */
+	Download_All();
+?>
