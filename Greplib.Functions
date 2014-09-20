@@ -15,7 +15,7 @@
 	 * This script contains various database functions that can be 
 	 * called from other scripts.
 	 */
-	include("Greplib.Settings");
+	require_once("Greplib.Settings");
 	
 	/*
 	 * Returns a database connection or null on error

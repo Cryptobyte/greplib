@@ -24,7 +24,7 @@
 	 *
 	 * This is designed to be run via command line or Cron job.
 	 */
-	include("Greplib.Settings");
+	require_once("Greplib.Settings");
 	
 	/*
 	 * Generates a url to the data file using 
@@ -52,39 +52,59 @@
 	 * Downloads the players.txt data file from Grepolis
 	 */
 	function Download_Players() {
+		print("Downloading Players\r");
+		$start_time = microtime(true);
 		file_put_contents(LOCAL_PLAYERS, fopen(Generate("players.txt"), 'r'));
+		$end_time = microtime(true);
+		$EX_TIME = sprintf("%05.2f", round($end_time - $start_time, 2));
+		print("Downloading Players           ...Done! [$EX_TIME]\n");
 	}
 	
 	/*
 	 * Downloads the alliances.txt data file from Grepolis
 	 */
 	function Download_Alliances() {
+		print("Downloading Alliances\r");
+		$start_time = microtime(true);
 		file_put_contents(LOCAL_ALLIANCES, fopen(Generate("alliances.txt"), 'r'));
+		$end_time = microtime(true);
+		$EX_TIME = sprintf("%05.2f", round($end_time - $start_time, 2));
+		print("Downloading Alliances         ...Done! [$EX_TIME]\n");
 	}
 	
 	/*
 	 * Downloads the towns.txt data file from Grepolis
 	 */
 	function Download_Towns() {
+		print("Downloading Towns\r");
+		$start_time = microtime(true);
 		file_put_contents(LOCAL_TOWNS, fopen(Generate("towns.txt"), 'r'));
+		$end_time = microtime(true);
+		$EX_TIME = sprintf("%05.2f", round($end_time - $start_time, 2));
+		print("Downloading Towns             ...Done! [$EX_TIME]\n");
 	}
 	
 	/*
 	 * Downloads the islands.txt data file from Grepolis
 	 */
 	function Download_Islands() {
+		print("Downloading Islands\r");
+		$start_time = microtime(true);
 		file_put_contents(LOCAL_ISLANDS, fopen(Generate("islands.txt"), 'r'));
+		$end_time = microtime(true);
+		$EX_TIME = sprintf("%05.2f", round($end_time - $start_time, 2));
+		print("Downloading Islands           ...Done! [$EX_TIME]\n");
 	}
 	
 	/*
 	 * Downloads the conquers.txt data file from Grepolis
 	 */
 	function Download_Conquers() {
+		print("Downloading Conquers\r");
+		$start_time = microtime(true);
 		file_put_contents(LOCAL_CONQUERS, fopen(Generate("conquers.txt"), 'r'));
+		$end_time = microtime(true);
+		$EX_TIME = sprintf("%05.2f", round($end_time - $start_time, 2));
+		print("Downloading Conquers          ...Done! [$EX_TIME]\n");
 	}
-	
-	/*
-	 * Automatically run Download_All when script is executed.
-	 */
-	Download_All();
 ?>

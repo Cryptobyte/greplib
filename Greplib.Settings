@@ -13,11 +13,7 @@
 	
 	/*
 	 * Turns on verbose output for better output when 
-	 * run from terminal. This prints live counters to 
-	 * the terminal window, if this is on when used as 
-	 * to pipe to file like this,
-	 *        
-	 *         php Greplib.php > Greplib.log
+	 * run from terminal.
 	 *
 	 * The script will pipe each update to the file 
 	 * causing a huge output file.
