@@ -52,8 +52,8 @@ How to use:
 		- php Greplib.Download
 		- php Greplib
 		
-	5) If everything works edit Greplib.Settings and set 
-	   DEBUG_MODE to FALSE
+	5) If everything works edit Greplib.Settings
+		- Set DEBUG_MODE to FALSE
 	   
 	6) OPTIONAL: Add to CRON
 		- crontab -e
