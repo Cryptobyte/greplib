@@ -1,4 +1,4 @@
-Greplib by H4x0 - http://crypt.noip.me
+##Greplib by H4x0 - http://crypt.noip.me
 
 Greplib is a very overdeveloped (lol) script that reads all the public Grepolis game data 
 and puts it in a organized database. This script has a ton of options as seen in the source 
@@ -12,7 +12,7 @@ very clean code but as this is my first major PHP project I'm sure I messed up q
 with "proper" syntax and such which is why ill be supporting this project and updating it 
 frequently.
 
-Requirements:
+##Requirements:
 	- Must be able to access the command line on 
 	  your server. This entire script was built 
 	  specifically for the command line PHP interpreter 
@@ -20,7 +20,7 @@ Requirements:
 	  
 	- PHP5+
 	
-Warnings:
+##Warnings:
 	- If you use Windows you will have to make sure all
 	  the paths in the script are mapped correctly as 
 	  Windows uses \ where *nix uses /
@@ -32,7 +32,7 @@ Warnings:
 	  dependencies in a directory that is not accessible 
 	  to the web.
 
-How to use:
+##How to use:
 	1) Check Greplib.sql for the proper database
 	   configuration. It is a valid SQL file that 
 	   can be used to create the database using 
