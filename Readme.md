@@ -1,4 +1,4 @@
-##Greplib by H4x0 - http://crypt.noip.me
+##Greplib by [H4x0](http://crypt.noip.me/blog)
 
 Greplib is a very overdeveloped (lol) script that reads all the public Grepolis game data 
 and puts it in a organized database. This script has a ton of options as seen in the source 
