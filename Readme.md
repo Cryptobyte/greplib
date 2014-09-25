@@ -57,4 +57,4 @@ frequently.
 	   
 	6. OPTIONAL: Add to CRON
 		- crontab -e
-		- php Greplib update all > Greplib.Log 2>&1
+		- php Greplib --update > Greplib.Log

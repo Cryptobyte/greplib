@@ -24,8 +24,38 @@
 	require_once("Greplib.Download");
 	require_once("Greplib.Functions");
 
-	if ((isset($argv)) && (count($argv) == 3)) {
-		if ($argv[1] == "--test") {
+	if ((isset($argv)) && (count($argv) > 1)) {
+		if ($argv[1] == "--version") {
+			print(SCRIPT_VERSION . "\n");
+			exit();
+		}
+	
+		if ($argv[1] == "--update") {
+			if(count($argv) > 2) {
+				if ($argv[2] == "get") {
+					print("Downloading all files...\n");
+					Download_All();
+					print("\nTimestamp   " . date(SCRIPT_DATE_FORMAT) . "\n");
+					exit();
+				}
+			
+				if ($argv[2] == "set") {
+					print("Processing  all files...\n");
+					Process_All();
+					print("\nTimestamp   " . date(SCRIPT_DATE_FORMAT) . "\n");
+					exit();
+				}
+			}
+			
+			print("Downloading all files...\n");
+			Download_All();
+			print("\nProcessing  all files...\n");
+			Process_All();
+			print("\nTimestamp   " . date(SCRIPT_DATE_FORMAT) . "\n");
+			exit();
+		}
+	
+		if (($argv[1] == "--test") && (count($argv) > 2)) {
 			if ($argv[2] == "database") {
 				$DB_CON = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
@@ -69,43 +99,11 @@
 				exit();
 			}
 		}
-	
-		if ($argv[1] == "--update") {
-			if ($argv[2] == "all") {
-				print("Downloading all files...\n");
-				Download_All();
-				print("\nProcessing  all files...\n");
-				All_Records();
-				print("\nTimestamp   " . date(SCRIPT_DATE_FORMAT) . "\n");
-				exit();
-			}
-			
-			if ($argv[2] == "get") {
-				print("Downloading all files...\n");
-				Download_All();
-				print("\nTimestamp   " . date(SCRIPT_DATE_FORMAT) . "\n");
-				exit();
-			}
-			
-			if ($argv[2] == "set") {
-				print("Processing  all files...\n");
-				All_Records();
-				print("\nTimestamp   " . date(SCRIPT_DATE_FORMAT) . "\n");
-				exit();
-			}
-		}
-	}
-	
-	if ((isset($argv)) && (count($argv) == 2)) {
-		if ($argv[1] == "--version") {
-			print(SCRIPT_VERSION . "\n");
-			exit();
-		}
 	}
 	
 	print(sprintf("%-70s",  "Greplib by H4x0") . "\n");
 	print(sprintf("%-70s",  " ") . "\n");
-	print(sprintf("%-70s", "--update all    | Download and update all data") . "\n");
+	print(sprintf("%-70s", "--update        | Download and update all data") . "\n");
 	print(sprintf("%-70s", "--update get    | Download data files from Grepolis") . "\n");
 	print(sprintf("%-70s", "--update set    | Process all data files into the database") . "\n");
 	print(sprintf("%-70s",  " ") . "\n");

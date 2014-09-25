@@ -2,7 +2,7 @@
 	/*
 	 * This is the global script version
 	 */
-	define("SCRIPT_VERSION", "1.2-RELEASE");
+	define("SCRIPT_VERSION", "1.3-RELEASE");
 	
 	/*
 	 * Changes the date version format for print()

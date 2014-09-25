@@ -51,7 +51,7 @@
 	 * Runs all Read/Update functions for a complete 
 	 * database update.
 	 */
-	function All_Records() {
+	function Process_All() {
 		Players();
 		Alliances();
 		Towns();
@@ -224,6 +224,7 @@
 			$name             = CheckClear($name);
 			$island_x         = CheckClear($island_x);
 			$island_y         = CheckClear($island_y);
+			$ocean            = floor($island_x / 100) * 10 + floor($island_y / 100);
 			$number_on_island = CheckClear($number_on_island);
 			$points           = CheckClear($points);
 			
@@ -231,6 +232,7 @@
 				$id,
 				$player_id,
 				$name,
+				$ocean,
 				$island_x,
 				$island_y,
 				$number_on_island,
@@ -239,7 +241,12 @@
         }
 		
 		foreach ($BUILT as $VAL) {
-			$DB_Q = "INSERT INTO Towns (id, player_id, name, island_x, island_y, number_on_island, points) VALUES('" . $VAL[0] . "', '" . $VAL[1] . "', '" . $VAL[2] . "', '" . $VAL[3] . "', '" . $VAL[4] . "', '" .$VAL[5] . "', '" .$VAL[6] . "') ON DUPLICATE KEY UPDATE player_id='" . $VAL[1] . "', name='" . $VAL[2] . "', island_x='" . $VAL[3] . "', island_y='" . $VAL[4] . "', number_on_island='" . $VAL[5] . "', points='" . $VAL[6] . "'";
+			$DB_Q = "INSERT INTO Towns (id, player_id, name, ocean, island_x, island_y, number_on_island, points) VALUES('" . $VAL[0] . "', '" . $VAL[1] . "', '" . $VAL[2] . "', '" . $VAL[3] . "', '" . $VAL[4] . "', '" .$VAL[5] . "', '" .$VAL[6] . "', '" .$VAL[7] . "') ON DUPLICATE KEY UPDATE player_id='" . $VAL[1] . "', name='" . $VAL[2] . "', ocean='" . $VAL[3] . "', island_x='" . $VAL[4] . "', island_y='" . $VAL[5] . "', number_on_island='" . $VAL[6] . "', points='" . $VAL[7] . "'";
+		
+			//If player_id is 0 this town is a ghost
+			if ($VAL[1] == 0) {
+				$DB_Q = "INSERT INTO Ghosts (id, name, ocean, island_x, island_y, number_on_island, points) VALUES('" . $VAL[0] . "', '" . $VAL[2] . "', '" . $VAL[3] . "', '" . $VAL[4] . "', '" .$VAL[5] . "', '" .$VAL[6] . "', '" .$VAL[7] . "') ON DUPLICATE KEY UPDATE name='" . $VAL[2] . "', ocean='" . $VAL[3] . "', island_x='" . $VAL[4] . "', island_y='" . $VAL[5] . "', number_on_island='" . $VAL[6] . "', points='" . $VAL[7] . "'";
+			}
 			
 			if (!DEBUG_MODE) {
 				if (!$DB_R = $DB_C->query($DB_Q)) {
