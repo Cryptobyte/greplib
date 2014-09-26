@@ -296,6 +296,7 @@
 			$id               = CheckClear($id);
 			$x                = CheckClear($x);
 			$y                = CheckClear($y);
+			$ocean            = floor($x / 100) * 10 + floor($y / 100);
 			$island_type      = CheckClear($island_type);
 			$available_towns  = CheckClear($available_towns);
 			$res_plus         = CheckClear($res_plus);
@@ -305,6 +306,7 @@
 				$id,
 				$x,
 				$y,
+				$ocean,
 				$island_type,
 				$available_towns,
 				$res_plus,
@@ -313,7 +315,7 @@
         }
 		
 		foreach ($BUILT as $VAL) {
-			$DB_Q = "INSERT INTO Islands (id, x, y, island_type, available_towns, res_plus, res_minus) VALUES('" . $VAL[0] . "', '" . $VAL[1] . "', '" . $VAL[2] . "', '" . $VAL[3] . "', '" . $VAL[4] . "', '" .$VAL[5] . "', '" .$VAL[6] . "') ON DUPLICATE KEY UPDATE x='" . $VAL[1] . "', y='" . $VAL[2] . "', island_type='" . $VAL[3] . "', available_towns='" . $VAL[4] . "', res_plus='" . $VAL[5] . "', res_minus='" . $VAL[6] . "'";
+			$DB_Q = "INSERT INTO Islands (id, x, y, ocean, island_type, available_towns, res_plus, res_minus) VALUES('" . $VAL[0] . "', '" . $VAL[1] . "', '" . $VAL[2] . "', '" . $VAL[3] . "', '" . $VAL[4] . "', '" .$VAL[5] . "', '" .$VAL[6] . "', '" .$VAL[7] . "') ON DUPLICATE KEY UPDATE x='" . $VAL[1] . "', y='" . $VAL[2] . "', ocean='" . $VAL[3] . "', island_type='" . $VAL[4] . "', available_towns='" . $VAL[5] . "', res_plus='" . $VAL[6] . "', res_minus='" . $VAL[7] . "'";
 			
 			if (!DEBUG_MODE) {
 				if (!$DB_R = $DB_C->query($DB_Q)) {

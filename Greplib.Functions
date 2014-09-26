@@ -177,22 +177,4 @@
 		$DB->close();
 		return $AR;
 	}
-	
-	/*
-	 * Returns a towns ocean number
-	 * 
-	 * INPUT:   TOWN ID         [STRING]
-	 * RETURNS: OCEAN NUMBER    [STRING]
-	 */
-	function Get_Town_Ocean_Number($ID) {
-		$DB = Database_Connection();
-		if (!$DB) { die("Database connection error."); }
-		$RE = $DB->query("SELECT island_x, island_y FROM Towns WHERE id='" . $ID . "'");
-		if (!$RE) { die("Query failed."); }
-		$RO = mysqli_fetch_assoc($RE);
-		$RESULT = floor($RO["island_x"] / 100) * 10 + floor($RO["island_y"] / 100);
-		$RE->free();
-		$DB->close();
-		return $RESULT;
-	}
 ?>
